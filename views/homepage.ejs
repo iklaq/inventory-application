@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hompage</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        color: antiquewhite;
+        background-color: rgb(12, 12, 10);
+        text-align: center;
+        padding: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="navbar">
+        <h1>Inventory Application</h1>
+      </div>
+
+      <div class="collections">
+        <h1>Add a Categorie</h1>
+        <form action="/add/categorie" method="post">
+          <input
+            type="text"
+            name="categorieName"
+            placeholder="Enter a Categorie"
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="categorie-cards">
+        <% cat.forEach((item)=>{ %>
+
+        <h1><%= item.categorieName %></h1>
+
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
