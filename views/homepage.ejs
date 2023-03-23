@@ -1,46 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Hompage</title>
+<head>
+    
+    <title>Homepage</title>
+</head>
+<body>
+     <div class="header">
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      .navbar {
-        color: antiquewhite;
-        background-color: rgb(12, 12, 10);
-        text-align: center;
-        padding: 30px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="header">
-      <div class="navbar">
-        <h1>Inventory Application</h1>
-      </div>
-
-      <div class="collections">
-        <h1>Add a Categorie</h1>
-        <form action="/add/categorie" method="post">
-          <input
-            type="text"
-            name="categorieName"
-            placeholder="Enter a Categorie"
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div class="categorie-cards">
-        <% cat.forEach((item)=>{ %>
-
-        <h1><%= item.categorieName %></h1>
-
-        <% }) %>
-      </div>
-    </div>
-  </body>
+        <%- include('../views/header') %>
+        <h1>homepage...</h1>
+     </div>
+  
+    
+    
+</body>
 </html>
