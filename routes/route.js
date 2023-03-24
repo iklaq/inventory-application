@@ -1,5 +1,5 @@
-const categorieDB = require("../model/categories");
 const express = require("express");
+const categorieDB = require("../model/categories");
 const itemDB = require("../model/items");
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 //rendering categories
 router.get("/categories", async (req, res) => {
   const categorieData = await categorieDB.find();
-  res.render("categories", { cat: categorieData });
+  res.render("categories", { categories: categorieData });
 });
 
 //rendering items
@@ -23,7 +23,7 @@ router.get("/items", async (req, res) => {
 });
 
 // Creating data in categorie collection from user in database
-router.post("/add/categorie", async (req, res) => {
+router.post("/categories", async (req, res) => {
   const categorieData = req.body;
   categorieData.numberOfItems = 0;
 
@@ -40,7 +40,7 @@ router.post("/add/categorie", async (req, res) => {
 });
 
 // Creating data in items collection from user in database
-router.post("/add/item", async (req, res) => {
+router.post("/items", async (req, res) => {
   const itemData = req.body;
 
   const data = new itemDB(itemData);

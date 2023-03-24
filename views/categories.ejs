@@ -35,7 +35,7 @@
       <%- include('../views/header') %>
       <div class="inputbar">
         <h1>Add a Categorie</h1>
-        <form action="/add/categorie" method="post">
+        <form action="/categories" method="post">
           <input
             type="text"
             name="categorieName"
@@ -44,9 +44,9 @@
           <button type="submit">Submit</button>
         </form>
       </div>
-      <% if(cat.length >= 1){ %>
+      <% if(categories.length >= 1){ %>
       <div class="categorie-cards">
-        <% cat.forEach((item)=>{ %>
+        <% categories.forEach((item)=>{ %>
         <div class="card">
           <h1>Categorie Name: <%= item.categorieName %></h1>
           <h1>No. of items: <%= item.numberOfItems %></h1>
