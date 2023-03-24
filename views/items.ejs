@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    
+  <head>
     <title>Items</title>
     <style>
+      .heading {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
 
-        .heading{
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .item-form{
+      .item-form {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
+      }
 
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-            margin-left: 35%;
-            margin-right: 35%;
-        }
-
-        .item-cards {
+      .item-cards {
         display: grid;
         gap: 50px 100px;
         font-size: 10px;
@@ -41,75 +38,52 @@
       .card h1 {
         padding-top: 15px;
       }
-
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
+      <%- include('../views/header') %> <% if(allCategories.length >= 1){ %>
 
-        <%- include('../views/header') %>
+      <div class="heading">
+        <h1>Add A New Item..</h1>
+      </div>
 
-        <% if(allCategories.length >= 1){ %>
-
-            <div class="heading">
-                <h1>Add A New Item..</h1>
-            </div>
-
-            <div class="form">
-                <form action="/add/item" method="post" class="item-form">
-                         
-                      <input type="text" name="itemName" placeholder="Enter Item Name">
-                      <br>
-                      <input type="number" name="itemPrice" placeholder="Enter Item Price">
-                      <br>
-                      <select name="itemCategorie">
-                        
-                        <% allCategories.forEach((item)=>{ %>
-
-                            <option ><%= item.categorieName %></option>
-
-                        <% }) %>
-
-                      </select>
-                      <br>
-                      <button type="submit">Submit</button>
-                </form>
-            </div>
-
-           
-        <% } else{ %>
-      
-            <h1>No Categorie Found, please add a categorie first, then add items...</h1>
-      
-        <% } %>
-
-
-        <% if(allItems.length >= 1){ %>
-
-            <div class="item-cards">
-              <% allItems.forEach((item)=>{ %>
-      
-              <div class="card">
-                <h1>Item Name: <%= item.itemName %></h1>
-                <h1>Price of items: ₹<%= item.itemPrice %></h1>
-                <h1>Categorie Name: <%= item.itemCategorie %> </h1>
-      
-              </div>
-      
-              <% }) %>
-            </div>
-      
-            <% } else{ %>
-      
-            <h1>No Categorie, please add a categorie...</h1>
-      
-            <% } %>
-
-        
-       
-        
+      <div class="form">
+        <form action="/add/item" method="post" class="item-form">
+          <input type="text" name="itemName" placeholder="Enter Item Name" />
+          <br />
+          <input
+            type="number"
+            name="itemPrice"
+            placeholder="Enter Item Price"
+          />
+          <br />
+          <select name="itemCategorie">
+            <% allCategories.forEach((item)=>{ %>
+            <option><%= item.categorieName %></option>
+            <% }) %>
+          </select>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <% } else{ %>
+      <h1>
+        No Categorie Found, please add a categorie first, then add items...
+      </h1>
+      <% } %> <% if(allItems.length >= 1){ %>
+      <div class="item-cards">
+      <% allItems.forEach((item)=>{ %>
+        <div class="card">
+          <h1>Item Name: <%= item.itemName %></h1>
+          <h1>Price of items: ₹<%= item.itemPrice %></h1>
+          <h1>Categorie Name: <%= item.itemCategorie %></h1>
+        </div>
+        <% }) %>
+      </div>
+      <% } else{ %>
+      <h1>No Categorie, please add a categorie...</h1>
+      <% } %>
     </div>
-    
-    
-</body>
+  </body>
 </html>

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Hompage</title>
-
+    <title>Homepage</title>
     <style>
-  
-
       .inputbar {
         margin-bottom: 20px;
         text-align: center;
@@ -27,6 +24,7 @@
         width: 40%;
         height: 20vh;
       }
+
       .card h1 {
         margin-top: 20px;
       }
@@ -34,9 +32,7 @@
   </head>
   <body>
     <div class="header">
-
       <%- include('../views/header') %>
-      
       <div class="inputbar">
         <h1>Add a Categorie</h1>
         <form action="/add/categorie" method="post">
@@ -48,25 +44,17 @@
           <button type="submit">Submit</button>
         </form>
       </div>
-
       <% if(cat.length >= 1){ %>
-
       <div class="categorie-cards">
         <% cat.forEach((item)=>{ %>
-
         <div class="card">
           <h1>Categorie Name: <%= item.categorieName %></h1>
           <h1>No. of items: <%= item.numberOfItems %></h1>
-
         </div>
-
         <% }) %>
       </div>
-
       <% } else{ %>
-
       <h1>No Categorie, please add a categorie...</h1>
-
       <% } %>
     </div>
   </body>
