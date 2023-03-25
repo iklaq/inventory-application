@@ -38,6 +38,19 @@
       .card h1 {
         padding-top: 15px;
       }
+      .delete-btn {
+        margin-top: 10px;
+        background-color: black;
+        width: 100px;
+        height: 40px;
+        
+       
+      }
+      .delete-btn a {
+        color: white;
+       
+        
+      }
     </style>
   </head>
   <body>
@@ -71,18 +84,21 @@
       <h1>
         No Categorie Found, please add a categorie first, then add items...
       </h1>
-      <% } %> <% if(allItems.length >= 1){ %>
+      <% } %> 
+      <% if(allItems.length >= 1){ %>
       <div class="item-cards">
       <% allItems.forEach((item)=>{ %>
         <div class="card">
           <h1>Item Name: <%= item.itemName %></h1>
           <h1>Price of items: ₹<%= item.itemPrice %></h1>
           <h1>Categorie Name: <%= item.itemCategorie %></h1>
+          <button class="delete-btn"><a href='/delete/item/<%= item._id %>'>Delete Item</a></button>
         </div>
+        
         <% }) %>
       </div>
       <% } else{ %>
-      <h1>No Categorie, please add a categorie...</h1>
+      <h1>No item found, please add a item...</h1>
       <% } %>
     </div>
   </body>

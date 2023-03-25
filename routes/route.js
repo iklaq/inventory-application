@@ -55,4 +55,16 @@ router.post("/items", async (req, res) => {
     });
 });
 
+// delete a item
+router.get("/delete/item/:_id", async (req, res) => {
+  const { _id } = req.params;
+
+  await itemDB.deleteOne({ _id });
+  try {
+    res.redirect("/items");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
