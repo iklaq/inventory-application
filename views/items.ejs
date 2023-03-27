@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Items</title>
+    <style>
+      body{
+        background-color: rgb(17, 202, 202);
+      }
+      .heading {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .inputbar {
+        margin-bottom: 20px;
+        text-align: center;
+        color: rgb(225, 255, 93);
+      
+      }
+      .inputbar input,select {
+
+        margin-top: 10px;
+        padding: 10px;
+        
+
+      }
+      .inputbar button {
+        width: 80px;
+        height: 40px;
+        background-color: black;
+        color: wheat;
+        cursor: pointer;
+        width: 100%;
+        
+      }
+
+      .item-form {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
+      }
+
+      .item-cards {
+        display: grid;
+        gap: 50px 100px;
+        font-size: 10px;
+        margin-top: 20px;
+      }
+
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+        margin-left: 30%;
+        margin-right: 30%;
+        width: 40%;
+        height: 20vh;
+      }
+
+      .card h1 {
+        padding-top: 15px;
+      }
+      .delete-btn {
+        margin-top: 10px;
+        background-color: black;
+        width: 100px;
+        height: 40px;
+        
+       
+      }
+      .delete-btn a {
+        color: white;
+       
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <%- include('../views/header') %> <% if(allCategories.length >= 1){ %>
+
+      <div class="heading">
+        <h1>Add A New Item..</h1>
+      </div>
+
+      <div class="inputbar">
+        <form action="/item" method="post" class="item-form">
+          <input type="text" name="name" placeholder="Enter Item Name" />
+          <br />
+          <input
+            type="number"
+            name="price"
+            placeholder="Enter Item Price"
+          />
+          <br />
+          <select name="categorie">
+            <% allCategories.forEach((categorie)=>{ %>
+            <option><%= categorie.name %></option>
+            <% }) %>
+          </select>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+        
+      <% if(allItems.length >= 1){ %>
+        <div class="item-cards">
+        <% allItems.forEach((item)=>{ %>
+          <div class="card">
+            <h1>Item Name: <%= item.name %></h1>
+            <h1>Price of items: ₹<%= item.price %></h1>
+            <h1>Categorie Name: <%= item.categorie %></h1>
+            <button class="delete-btn"><a href='/delete-item/<%= item._id %>'>Delete Item</a></button>
+          </div>
+          
+          <% }) %>
+        </div>
+        <% } else{ %>
+        <h1>No item found, please add a item...</h1>
+        <% } %>
+          
+
+      <% } else{ %>
+      <h1>
+        No Categorie Found, please add a categorie first, then add items...
+      </h1>
+      <% } %> 
+     
+    </div>
+  </body>
+</html>

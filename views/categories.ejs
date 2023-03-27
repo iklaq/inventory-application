@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Homepage</title>
+    <style>
+      body{
+        background-color: rgb(17, 202, 202);
+      }
+      
+      .inputbar {
+        margin-bottom: 20px;
+        text-align: center;
+        color: rgb(225, 255, 93);
+      
+      }
+      .inputbar input {
+
+        margin-top: 10px;
+        padding: 10px;
+        
+
+      }
+      .inputbar button {
+        width: 80px;
+        height: 40px;
+        background-color: black;
+        color: wheat;
+        cursor: pointer;
+      }
+
+      .categorie-cards {
+        display: grid;
+        gap: 50px 100px;
+        font-size: 10px;
+      }
+
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+        margin-left: 30%;
+        margin-right: 30%;
+        width: 40%;
+        height: 20vh;
+      }
+
+      .card h1 {
+        margin-top: 20px;
+      }
+
+      .delete-btn {
+        margin-top: 10px;
+        background-color: black;
+        width: 100px;
+        height: 40px;
+        
+       
+      }
+      .delete-btn a {
+        color: wheat;
+       
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <%- include('../views/header') %>
+      <div class="inputbar">
+        <h1>Add a Categorie</h1>
+        <form action="/categorie" method="post">
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter a Categorie"
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <% if(categories.length >= 1){ %>
+      <div class="categorie-cards">
+        <% categories.forEach((categorie)=>{ %>
+        <div class="card">
+          <h1>Categorie Name: <%= categorie.name %></h1>
+          <h1>No. of items: <%= categorie.numberOfItems %></h1>
+          <button class="delete-btn"><a href='/delete-categorie/<%= categorie._id %>'>Delete Categorie</a></button>
+        </div>
+        <% }) %>
+      </div>
+      <% } else{ %>
+      <h1>No Categorie, please add a categorie...</h1>
+      <% } %>
+    </div>
+  </body>
+</html>
