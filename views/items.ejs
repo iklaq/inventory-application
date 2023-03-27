@@ -3,6 +3,9 @@
   <head>
     <title>Items</title>
     <style>
+      body{
+        background-color: rgb(17, 202, 202);
+      }
       .heading {
         text-align: center;
         margin-top: 10px;
@@ -62,44 +65,48 @@
       </div>
 
       <div class="form">
-        <form action="/items" method="post" class="item-form">
-          <input type="text" name="itemName" placeholder="Enter Item Name" />
+        <form action="/item" method="post" class="item-form">
+          <input type="text" name="name" placeholder="Enter Item Name" />
           <br />
           <input
             type="number"
-            name="itemPrice"
+            name="price"
             placeholder="Enter Item Price"
           />
           <br />
-          <select name="itemCategorie">
-            <% allCategories.forEach((item)=>{ %>
-            <option><%= item.categorieName %></option>
+          <select name="categorie">
+            <% allCategories.forEach((categorie)=>{ %>
+            <option><%= categorie.name %></option>
             <% }) %>
           </select>
           <br />
           <button type="submit">Submit</button>
         </form>
       </div>
+        
+      <% if(allItems.length >= 1){ %>
+        <div class="item-cards">
+        <% allItems.forEach((item)=>{ %>
+          <div class="card">
+            <h1>Item Name: <%= item.name %></h1>
+            <h1>Price of items: ₹<%= item.price %></h1>
+            <h1>Categorie Name: <%= item.categorie %></h1>
+            <button class="delete-btn"><a href='/delete-item/<%= item._id %>'>Delete Item</a></button>
+          </div>
+          
+          <% }) %>
+        </div>
+        <% } else{ %>
+        <h1>No item found, please add a item...</h1>
+        <% } %>
+          
+
       <% } else{ %>
       <h1>
         No Categorie Found, please add a categorie first, then add items...
       </h1>
       <% } %> 
-      <% if(allItems.length >= 1){ %>
-      <div class="item-cards">
-      <% allItems.forEach((item)=>{ %>
-        <div class="card">
-          <h1>Item Name: <%= item.itemName %></h1>
-          <h1>Price of items: ₹<%= item.itemPrice %></h1>
-          <h1>Categorie Name: <%= item.itemCategorie %></h1>
-          <button class="delete-btn"><a href='/delete/item/<%= item._id %>'>Delete Item</a></button>
-        </div>
-        
-        <% }) %>
-      </div>
-      <% } else{ %>
-      <h1>No item found, please add a item...</h1>
-      <% } %>
+     
     </div>
   </body>
 </html>

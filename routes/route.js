@@ -23,7 +23,7 @@ router.get("/items", async (req, res) => {
 });
 
 // Creating data in categorie collection from user in database
-router.post("/categories", async (req, res) => {
+router.post("/categorie", async (req, res) => {
   const categorieData = req.body;
   categorieData.numberOfItems = 0;
 
@@ -40,7 +40,7 @@ router.post("/categories", async (req, res) => {
 });
 
 // Creating data in items collection from user in database
-router.post("/items", async (req, res) => {
+router.post("/item", async (req, res) => {
   const itemData = req.body;
 
   const data = new itemDB(itemData);
@@ -56,7 +56,7 @@ router.post("/items", async (req, res) => {
 });
 
 // delete a item
-router.get("/delete/item/:_id", async (req, res) => {
+router.get("/delete-item/:_id", async (req, res) => {
   const { _id } = req.params;
 
   await itemDB.deleteOne({ _id });
@@ -66,5 +66,22 @@ router.get("/delete/item/:_id", async (req, res) => {
     console.log(error);
   }
 });
+
+//delete a categorie
+
+router.get("/delete-categorie/:_id", async (req, res) => {
+  const { _id } = req.params;
+  const data = await categorieDB.find({_id});
+ 
+
+  await categorieDB.deleteOne({ _id });
+  try {
+    res.redirect("/categories");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 
 module.exports = router;

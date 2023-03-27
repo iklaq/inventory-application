@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema({
-  itemName: String,
-  itemPrice: Number,
-  itemCategorie: String,
+  name: String,
+  price: Number,
+  categorie: String,
 });
 
 module.exports = mongoose.model("items", itemSchema);
